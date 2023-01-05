@@ -1,47 +1,60 @@
 {
-	"name": "parse-json",
-	"version": "6.0.2",
-	"description": "Parse JSON with more helpful errors",
-	"license": "MIT",
-	"repository": "sindresorhus/parse-json",
-	"funding": "https://github.com/sponsors/sindresorhus",
-	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
-	},
-	"type": "module",
-	"exports": "./index.js",
-	"engines": {
-		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-	},
-	"scripts": {
-		"test": "xo && nyc ava"
-	},
-	"files": [
-		"index.js",
-		"vendor"
-	],
-	"keywords": [
-		"parse",
-		"json",
-		"graceful",
-		"error",
-		"message",
-		"humanize",
-		"friendly",
-		"helpful",
-		"string"
-	],
-	"dependencies": {
-		"@babel/code-frame": "^7.16.0",
-		"error-ex": "^1.3.2",
-		"json-parse-even-better-errors": "^2.3.1",
-		"lines-and-columns": "^2.0.2"
-	},
-	"devDependencies": {
-		"ava": "^3.15.0",
-		"nyc": "^15.1.0",
-		"xo": "^0.46.4"
-	}
+  "name": "@samhuk/parse-json",
+  "version": "1.0.0",
+  "description": "CJS fork of parse-json",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "clean-unit-tests": "rimraf ./build-test",
+    "build-unit-tests": "tsc -p ./tsconfig.unit-tests.json",
+    "run-unit-tests": "jest",
+    "unit-tests": "npm run clean-unit-tests && npm run build-unit-tests && npm run run-unit-tests",
+    "lint": "eslint -c .eslintrc.json ./src --ext .ts",
+    "lint-errors-only": "eslint -c .eslintrc.json ./src --ext .ts --quiet",
+    "clean-ts-dist": "rimraf ./dist",
+    "build-ts-dist": "npm run clean-ts-dist && tsc -p ./tsconfig.dist.json",
+    "clean-ts": "rimraf ./build-ts",
+    "build-ts": "npm run clean-ts && tsc -p ./tsconfig.all.json",
+    "clean": "npm run clean-unit-tests && npm run clean-integration-tests && npm run clean-ts && npm run clean-ts-dist && npm run clean-examples",
+    "check": "npm rum lint-errors-only && npm run build-ts && npm run unit-tests && echo Done!"
+  },
+  "repository": "https://github.com/samhuk/parse-json",
+  "author": {
+    "name": "Sam Hughes",
+    "email": "samhughes1701@hotmail.co.uk",
+    "url": "http://samhuk.com/about"
+  },
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/code-frame": "^7.16.0",
+    "error-ex": "^1.3.2",
+    "json-parse-even-better-errors": "^2.3.1",
+    "lines-and-columns": "^2.0.2"
+  },
+  "devDependencies": {
+    "@types/babel__code-frame": "^7.0.3",
+    "@types/jest": "^29.1.2",
+    "@types/node": "^18.8.3",
+    "@types/pg": "^8.6.5",
+    "@typescript-eslint/eslint-plugin": "^5.40.0",
+    "@typescript-eslint/parser": "^5.40.0",
+    "babel-jest": "^29.1.2",
+    "concurrently": "^7.4.0",
+    "env-cmd": "^10.1.0",
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.9",
+    "jest": "^29.1.2",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
+  }
 }

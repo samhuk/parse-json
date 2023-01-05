@@ -1,119 +1,17 @@
-# parse-json
+<h1 align="center">parse-json</h1>
+<p align="center">
+  <em>Fork of parse-json</em>
+</p>
 
-> Parse JSON with more helpful errors
+<p align="center">
+  <a href="https://img.shields.io/badge/License-MIT-green.svg" target="_blank">
+    <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="license" />
+  </a>
+  <a href="https://badge.fury.io/js/@samhuk/parse-json.svg" target="_blank">
+    <img src="https://badge.fury.io/js/@samhuk/parse-json.svg" alt="npm version" />
+  </a>
+</p>
 
-## Install
+## Overview
 
-```sh
-npm install parse-json
-```
-
-## Usage
-
-```js
-import parseJson, {JSONError} from 'parse-json';
-
-const json = '{\n\t"foo": true,\n}';
-
-
-JSON.parse(json);
-/*
-undefined:3
-}
-^
-SyntaxError: Unexpected token }
-*/
-
-
-parseJson(json);
-/*
-JSONError: Unexpected token } in JSON at position 16 while parsing near '{      "foo": true,}'
-
-  1 | {
-  2 |   "foo": true,
-> 3 | }
-    | ^
-*/
-
-
-parseJson(json, 'foo.json');
-/*
-JSONError: Unexpected token } in JSON at position 16 while parsing near '{      "foo": true,}' in foo.json
-
-  1 | {
-  2 |   "foo": true,
-> 3 | }
-    | ^
-*/
-
-
-// You can also add the filename at a later point
-try {
-	parseJson(json);
-} catch (error) {
-	if (error instanceof JSONError) {
-		error.fileName = 'foo.json';
-	}
-
-	throw error;
-}
-/*
-JSONError: Unexpected token } in JSON at position 16 while parsing near '{      "foo": true,}' in foo.json
-
-  1 | {
-  2 |   "foo": true,
-> 3 | }
-    | ^
-*/
-```
-
-## API
-
-### parseJson(string, reviver?, filename?)
-
-Throws a `JSONError` when there is a parsing error.
-
-#### string
-
-Type: `string`
-
-#### reviver
-
-Type: `Function`
-
-Prescribes how the value originally produced by parsing is transformed, before being returned. See [`JSON.parse` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse#Using_the_reviver_parameter
-) for more.
-
-#### filename
-
-Type: `string`
-
-The filename displayed in the error message.
-
-### JSONError
-
-Exposed for `instanceof` checking.
-
-#### fileName
-
-Type: `string`
-
-The filename displayed in the error message.
-
-#### codeFrame
-
-Type: `string`
-
-The printable section of the JSON which produces the error.
-
----
-
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/npm-parse-json?utm_source=npm-parse-json&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>
+This is a fork of [parse-json](https://github.com/sindresorhus/parse-json) that integrates Typescript and is bundled to CJS format for distribution.
